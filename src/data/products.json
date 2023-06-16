@@ -1,0 +1,112 @@
+[
+  {
+    "id": "1",
+    "title": "Ataque a los Titanes",
+    "description": "Un emocionante manga sobre la lucha de la humanidad contra gigantes humanoides.",
+    "code": "AAT001",
+    "price": 10.99,
+    "status": true,
+    "stock": 50,
+    "category": "Manga",
+    "thumbnails": ["thumbnail1.jpg"]
+  },
+  {
+    "id": "2",
+    "title": "One Piece",
+    "description": "Sigue las aventuras de Monkey D. Luffy y su tripulación de piratas en busca del tesoro definitivo, el One Piece.",
+    "code": "OP001",
+    "price": 12.99,
+    "status": true,
+    "stock": 30,
+    "category": "Manga",
+    "thumbnails": ["thumbnail2.jpg"]
+  },
+  {
+    "id": "3",
+    "title": "Naruto",
+    "description": "Únete a Naruto Uzumaki en su viaje para convertirse en el Hokage, el ninja más fuerte de su aldea.",
+    "code": "NAR001",
+    "price": 9.99,
+    "status": true,
+    "stock": 20,
+    "category": "Manga",
+    "thumbnails": ["thumbnail3.jpg"]
+  },
+  {
+    "id": "4",
+    "title": "Bleach",
+    "description": "Experimenta las aventuras sobrenaturales de Ichigo Kurosaki, un Shinigami que protege a los humanos de los espíritus malignos.",
+    "code": "BL001",
+    "price": 8.99,
+    "status": true,
+    "stock": 15,
+    "category": "Manga",
+    "thumbnails": ["thumbnail4.jpg"]
+  },
+  {
+    "id": "5",
+    "title": "Dragon Ball",
+    "description": "Sigue el viaje de Son Goku mientras entrena en artes marciales y busca las Esferas del Dragón para cumplir sus deseos.",
+    "code": "DB001",
+    "price": 11.99,
+    "status": true,
+    "stock": 25,
+    "category": "Manga",
+    "thumbnails": ["thumbnail5.jpg"]
+  },
+  {
+    "id": "6",
+    "title": "Death Note",
+    "description": "Entra en el mundo de Light Yagami y su búsqueda de justicia utilizando el misterioso Cuaderno de Muerte, un cuaderno con poderes sobrenaturales.",
+    "code": "DN001",
+    "price": 7.99,
+    "status": true,
+    "stock": 10,
+    "category": "Manga",
+    "thumbnails": ["thumbnail6.jpg"]
+  },
+  {
+    "id": "7",
+    "title": "Fullmetal Alchemist",
+    "description": "Únete a los hermanos Elric en su búsqueda de la Piedra Filosofal en un mundo de alquimia y aventuras.",
+    "code": "FA001",
+    "price": 10.99,
+    "status": true,
+    "stock": 35,
+    "category": "Manga",
+    "thumbnails": ["thumbnail7.jpg"]
+  },
+  {
+    "id": "8",
+    "title": "My Hero Academia",
+    "description": "Descubre el mundo de los héroes y villanos en la historia de Izuku Midoriya, un joven con el sueño de convertirse en un gran héroe.",
+    "code": "MHA001",
+    "price": 11.99,
+    "status": true,
+    "stock": 40,
+    "category": "Manga",
+    "thumbnails": ["thumbnail8.jpg"]
+  },
+  {
+    "id": "9",
+    "title": "Tokyo Ghoul",
+    "description": "Sumérgete en el oscuro y retorcido mundo de Ken Kaneki, un estudiante universitario convertido en medio-ghoul.",
+    "code": "TG001",
+    "price": 9.99,
+    "status": true,
+    "stock": 15,
+    "category": "Manga",
+    "thumbnails": ["thumbnail9.jpg"]
+  },
+  {
+    "id": "10",
+    "title": "Demon Slayer",
+    "description": "Sigue el viaje de Tanjiro Kamado para vengar a su familia y proteger a la humanidad de los demonios devoradores de hombres.",
+    "code": "DS001",
+    "price": 11.99,
+    "status": true,
+    "stock": 30,
+    "category": "Manga",
+    "thumbnails": ["thumbnail10.jpg"]
+  }
+]
