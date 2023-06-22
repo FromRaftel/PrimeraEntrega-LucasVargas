@@ -3,8 +3,7 @@
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 
-const productsFilePath =
-  "C:\\Users\\Lucas\\Desktop\\PreEntrega1-LucasVargas\\src\\data\\products.json";
+const productsFilePath = "./src/data/products.json";
 
 // Obtener todos los productos
 const getAllProducts = (req, res) => {

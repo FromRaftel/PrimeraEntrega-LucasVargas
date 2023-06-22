@@ -3,7 +3,7 @@
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 
-const cartsFilePath = "~/Desktop/PreEntrega1-LucasVargas/src/data/carts.json";
+const cartsFilePath = "./src/data/carts.json";
 
 // Crear un nuevo carrito
 const createCart = (req, res) => {
