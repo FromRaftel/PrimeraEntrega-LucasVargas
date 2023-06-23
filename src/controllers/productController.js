@@ -1,81 +1,54 @@
-// productController.js
-
 const fs = require("fs");
-const { v4: uuidv4 } = require("uuid");
+const path = require("path");
 
-const productsFilePath = "./src/data/products.json";
+const productsPath = path.join(__dirname, "..", "data", "products.json");
 
-// Obtener todos los productos
-const getAllProducts = (req, res) => {
-  const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-  res.json(products);
-};
+function getProducts() {
+  const productsData = fs.readFileSync(productsPath, "utf8");
+  return JSON.parse(productsData);
+}
 
-// Obtener un producto por su ID
-const getProductById = (req, res) => {
-  const { pid } = req.params;
-  const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-  const product = products.find((p) => p.id === pid);
-  if (product) {
-    res.json(product);
-  } else {
-    res.status(404).json({ message: "Product not found" });
-  }
-};
+function saveProducts(products) {
+  fs.writeFileSync(productsPath, JSON.stringify(products, null, 2), "utf8");
+}
 
-// Agregar un nuevo producto
-const addProduct = (req, res) => {
-  const { title, description, code, price, stock, category, thumbnails } =
-    req.body;
-  const newProduct = {
-    id: uuidv4(),
-    title,
-    description,
-    code,
-    price,
-    status: true,
-    stock,
-    category,
-    thumbnails,
-  };
-  const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+function getProductById(productId) {
+  const products = getProducts();
+  return products.find((product) => product.id === productId);
+}
+
+function createProduct(productData) {
+  const products = getProducts();
+  const newProduct = { id: Date.now().toString(), ...productData };
   products.push(newProduct);
-  fs.writeFileSync(productsFilePath, JSON.stringify(products));
-  res.status(201).json(newProduct);
-};
+  saveProducts(products);
+  return newProduct;
+}
 
-// Actualizar un producto existente
-const updateProduct = (req, res) => {
-  const { pid } = req.params;
-  const updatedFields = req.body;
-  const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-  const productIndex = products.findIndex((p) => p.id === pid);
-  if (productIndex !== -1) {
-    products[productIndex] = { ...products[productIndex], ...updatedFields };
-    fs.writeFileSync(productsFilePath, JSON.stringify(products));
-    res.json(products[productIndex]);
-  } else {
-    res.status(404).json({ message: "Product not found" });
-  }
-};
+function updateProduct(productId, productData) {
+  const products = getProducts();
+  const updatedProducts = products.map((product) => {
+    if (product.id === productId) {
+      return { ...product, ...productData };
+    }
+    return product;
+  });
+  saveProducts(updatedProducts);
+  return getProductById(productId);
+}
 
-// Eliminar un producto por su ID
-const deleteProduct = (req, res) => {
-  const { pid } = req.params;
-  const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-  const updatedProducts = products.filter((p) => p.id !== pid);
-  if (products.length !== updatedProducts.length) {
-    fs.writeFileSync(productsFilePath, JSON.stringify(updatedProducts));
-    res.json({ message: "Product deleted" });
-  } else {
-    res.status(404).json({ message: "Product not found" });
-  }
-};
+function deleteProduct(productId) {
+  const products = getProducts();
+  const updatedProducts = products.filter(
+    (product) => product.id !== productId
+  );
+  saveProducts(updatedProducts);
+}
 
 module.exports = {
-  getAllProducts,
+  getProducts,
   getProductById,
-  addProduct,
+  createProduct,
   updateProduct,
   deleteProduct,
 };

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Real-Time Products</title>
+  <script src="https://cdn.socket.io/4.3.1/socket.io.js"></script>
+  <script>
+    var socket = io();
+    socket.on('productCreated', function(product) {
+      // Handle newly created product
+    });
+    socket.on('productDeleted', function(productId) {
+      // Handle deleted product
+    });
+  </script>
+</head>
+<body>
+  <h1>Real-Time List of Products</h1>
+  <ul>
+    {{#each products}}
+    <li>{{this.title}} - {{this.price}}</li>
+    {{/each}}
+  </ul>
+</body>
+</html>

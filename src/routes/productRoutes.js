@@ -1,27 +1,43 @@
-// productRoutes.js
-
 const express = require("express");
 const router = express.Router();
 const productController = require("../controllers/productController");
 
-// Ruta GET /api/products/
-// Listar todos los productos
-router.get("/", productController.getAllProducts);
+router.get("/", (req, res) => {
+  const products = productController.getProducts();
+  res.json(products);
+});
 
-// Ruta GET /api/products/:pid
-// Obtener un producto por su ID
-router.get("/:pid", productController.getProductById);
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  const product = productController.getProductById(id);
+  if (product) {
+    res.json(product);
+  } else {
+    res.status(404).json({ message: "Product not found" });
+  }
+});
 
-// Ruta POST /api/products/
-// Agregar un nuevo producto
-router.post("/", productController.addProduct);
+router.post("/", (req, res) => {
+  const productData = req.body;
+  const newProduct = productController.createProduct(productData);
+  res.status(201).json(newProduct);
+});
 
-// Ruta PUT /api/products/:pid
-// Actualizar un producto existente
-router.put("/:pid", productController.updateProduct);
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const productData = req.body;
+  const updatedProduct = productController.updateProduct(id, productData);
+  if (updatedProduct) {
+    res.json(updatedProduct);
+  } else {
+    res.status(404).json({ message: "Product not found" });
+  }
+});
 
-// Ruta DELETE /api/products/:pid
-// Eliminar un producto por su ID
-router.delete("/:pid", productController.deleteProduct);
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  productController.deleteProduct(id);
+  res.status(204).end();
+});
 
 module.exports = router;

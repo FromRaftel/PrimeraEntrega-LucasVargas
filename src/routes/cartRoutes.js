@@ -1,19 +1,43 @@
-// cartRoutes.js
-
 const express = require("express");
 const router = express.Router();
 const cartController = require("../controllers/cartController");
 
-// Ruta POST /api/carts/
-// Crear un nuevo carrito
-router.post("/", cartController.createCart);
+router.get("/", (req, res) => {
+  const carts = cartController.getCarts();
+  res.json(carts);
+});
 
-// Ruta GET /api/carts/:cid
-// Obtener un carrito por su ID
-router.get("/:cid", cartController.getCartById);
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  const cart = cartController.getCartById(id);
+  if (cart) {
+    res.json(cart);
+  } else {
+    res.status(404).json({ message: "Cart not found" });
+  }
+});
 
-// Ruta POST /api/carts/:cid/product/:pid
-// Agregar un producto a un carrito
-router.post("/:cid/product/:pid", cartController.addProductToCart);
+router.post("/", (req, res) => {
+  const cartData = req.body;
+  const newCart = cartController.createCart(cartData);
+  res.status(201).json(newCart);
+});
+
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const cartData = req.body;
+  const updatedCart = cartController.updateCart(id, cartData);
+  if (updatedCart) {
+    res.json(updatedCart);
+  } else {
+    res.status(404).json({ message: "Cart not found" });
+  }
+});
+
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  cartController.deleteCart(id);
+  res.status(204).end();
+});
 
 module.exports = router;
